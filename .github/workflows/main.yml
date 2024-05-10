@@ -17,33 +17,12 @@ jobs:
           node-version: '14'
           npm : 'latest'
 
-      - name: Install iltorb
-        run: npm install iltorb
-
-      - name: Install build tools
-        run: | 
-            sudo apt-get update
-            sudo apt-get install -y build-essential
-
-      - name: Install node-gyp
-        run: npm install -g node-gyp
-
-
       - name: Clear npm cache
         run: npm cache clean --force
 
           
       - name: Install dependencies
-        run: |
-          npm install || \
-          npm install || \
-          npm install
-
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+        run: npm install
 
       - name: Build
         run: npm run build
