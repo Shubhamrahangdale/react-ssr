@@ -17,10 +17,10 @@ jobs:
           node-version: '14'
           npm : 'latest'
           
-      - name: Use Python 2.7
+      - name: Use Python 3.13.0
         uses: actions/setup-python@v2
         with:
-         python-version: '2.7'
+         python-version: '3.13.0'
 
       - name: Clear npm cache
         run: npm cache clean --force
