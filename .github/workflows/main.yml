@@ -16,13 +16,20 @@ jobs:
         with:
           node-version: '14'
           npm : 'latest'
+          
+      - name: Use Python 2.7
+        uses: actions/setup-python@v2
+        with:
+         python-version: '2.7'
 
       - name: Clear npm cache
         run: npm cache clean --force
 
           
       - name: Install dependencies
-        run: npm install
+        run: |
+           npm install -g npm@latest
+           npm install
 
       - name: Build
         run: npm run build
