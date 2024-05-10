@@ -1,0 +1,59 @@
+name: CI/CD Pipeline
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js and npm
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+          npm : 'latest'
+
+      - name: Install iltorb
+        run: npm install iltorb
+
+      - name: Install build tools
+        run: | 
+            sudo apt-get update
+            sudo apt-get install -y build-essential
+
+      - name: Install node-gyp
+        run: npm install -g node-gyp
+
+
+      - name: Clear npm cache
+        run: npm cache clean --force
+
+          
+      - name: Install dependencies
+        run: |
+          npm install || \
+          npm install || \
+          npm install
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to AWS
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - run: |
+          aws s3 sync build/ s3://techdome-jenkins-cicd-bucket/
+          aws cloudfront create-invalidation --distribution-id E1IUL1R5EKH6RA --paths "/*"
