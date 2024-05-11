@@ -22,16 +22,11 @@ jobs:
         with:
           node-version: '14'
           npm : 'latest'
-          
-     
-
-      - name: Clear npm cache
-        run: npm cache clean --force
 
           
       - name: Install dependencies
         run: |
-           npm install -g npm@latest
+           npm install npm@latest
            npm install --legacy-peer-deps
  
       - name: Build
