@@ -11,6 +11,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Uninstall Node.js and npm
+        run: |
+          sudo apt-get remove --purge nodejs npm
+          sudo apt-get autoremove
+          sudo apt-get autoclean
+
       - name: Setup Node.js and npm
         uses: actions/setup-node@v3
         with:
