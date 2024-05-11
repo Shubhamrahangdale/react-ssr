@@ -1,5 +1,3 @@
-This Document outlines the steps to set up and trigger the CI/CD pipeline for a React application using GitHub Actions and AWS.
-1. Create Workflow file in the repository ('GitHub/workflows/main.yml')
 
 # CI/CD Pipeline Documentation
 
