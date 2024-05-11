@@ -23,10 +23,7 @@ jobs:
           node-version: '14'
           npm : 'latest'
           
-      # - name: Use Python 3.12.0
-      #   uses: actions/setup-python@v2
-      #   with:
-      #    python-version: '3.12.0'
+     
 
       - name: Clear npm cache
         run: npm cache clean --force
@@ -35,8 +32,8 @@ jobs:
       - name: Install dependencies
         run: |
            npm install -g npm@latest
-           npm install
-
+           npm install --legacy-peer-deps
+ 
       - name: Build
         run: npm run build
 
