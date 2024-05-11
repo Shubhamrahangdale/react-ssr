@@ -80,9 +80,10 @@
     "setupTestFrameworkScriptFile": "<rootDir>/test-config/test-setup.js"
   },
   "author": "",
-  "license": "MIT"
-},
-"engines": {
-  "node": "20.12.2"
-  "npm": "latest"
+  "license": "MIT",
+  "engines": {
+   "node": "20.12.2",
+   "npm": "latest"
+  }
 }
+
