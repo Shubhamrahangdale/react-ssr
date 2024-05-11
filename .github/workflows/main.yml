@@ -17,6 +17,9 @@ jobs:
           sudo apt-get autoremove
           sudo apt-get autoclean
 
+      - name: Use Python 2.7 for node-gyp
+        run: sudo apt-get install python2.7
+
       - name: Setup Node.js and npm
         uses: actions/setup-node@v3
         with:
@@ -27,6 +30,7 @@ jobs:
       - name: Install dependencies
         run: |
            npm install npm@latest
+           npm install --python=python2.7
            npm install --legacy-peer-deps
  
       - name: Build
