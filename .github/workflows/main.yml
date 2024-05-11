@@ -17,9 +17,6 @@ jobs:
           node-version: '14'
           npm : 'latest'
           
-      - name: Install dependencies
-        run: npm install
-          
       - name: Use Python 3.12.0
         uses: actions/setup-python@v2
         with:
