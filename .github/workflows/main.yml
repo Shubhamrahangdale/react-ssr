@@ -7,10 +7,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+        
       - name: Uninstall Node.js and npm
         run: |
           sudo apt-get remove --purge nodejs npm
@@ -20,14 +21,28 @@ jobs:
       - name: Setup Node.js and npm
         uses: actions/setup-node@v3
         with:
-          node-version: '20.12.2'
-          npm : '10.5.0'
-          
+         node-version: '14.21.3'
+         npm : '6.14.8'
+
+      - name: Install Build Essential
+        run: |
+              sudo apt-get update
+              sudo apt-get install -y build-essential
+
+      - name: Install Python 2.7
+        run: |
+             sudo apt-get install python2.7
+             sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+
+      - name: Clean npm cache
+        run: |
+           npm cache clean 
+            
       - name: Install dependencies
         run: |
-           npm install npm@latest
-           npm install --legacy-peer-deps
- 
+           npm install npm@6.14.8
+           npm install 
+           
       - name: Build
         run: npm run build
 
