@@ -22,15 +22,10 @@ jobs:
         with:
           node-version: '20.12.2'
           npm : 'latest'
-
-      - name: Use Python 2.7 for node-gyp
-        run: sudo apt-get install python2.7
-
           
       - name: Install dependencies
         run: |
            npm install npm@latest
-           npm install --python=python2.7
            npm install --legacy-peer-deps
  
       - name: Build
